@@ -1,9 +1,10 @@
 import { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { projects, getProjectBySlug } from "@/data/projects";
 import { siteConfig } from "@/data/site";
+import { ProjectNav } from "@/components/ProjectNav";
+import { ProjectHero } from "@/components/ProjectHero";
 
 /* ---------- Static params for all 6 projects ---------- */
 export function generateStaticParams() {
@@ -49,32 +50,7 @@ export default async function ProjectPage({
       {/* ------------------------------------------------- */}
       {/*  1. Hero Section                                   */}
       {/* ------------------------------------------------- */}
-      <section className="relative h-screen w-full overflow-hidden bg-[#050505]">
-        {/* Background image */}
-        <Image
-          src={project.heroImage}
-          alt={project.title}
-          fill
-          priority
-          className="object-cover opacity-50"
-          sizes="100vw"
-        />
-
-        {/* Gradient overlay: transparent top to dark bottom */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#050505]" />
-
-        {/* Title anchored to bottom of hero */}
-        <div className="absolute inset-x-0 bottom-0 px-5 pb-12 md:px-10 md:pb-16 lg:pb-20">
-          <div className="mx-auto max-w-[1200px]">
-            <h1
-              className="text-[56px] leading-[0.95] font-black tracking-[-0.06em] uppercase text-white
-                         md:text-[100px] lg:text-[140px]"
-            >
-              {project.title}
-            </h1>
-          </div>
-        </div>
-      </section>
+      <ProjectHero title={project.title} heroImage={project.heroImage} />
 
       {/* ------------------------------------------------- */}
       {/*  2. Project Details Section                        */}
@@ -166,43 +142,10 @@ export default async function ProjectPage({
       {/* ------------------------------------------------- */}
       {/*  4. Project Navigation (Prev / Next)               */}
       {/* ------------------------------------------------- */}
-      {(project.prevProject || project.nextProject) && (
-        <section className="bg-white border-t border-gray-200">
-          <div className="mx-auto max-w-[1200px] px-5 md:px-10 py-12 md:py-16">
-            <div className="flex items-start justify-between gap-8">
-              {/* Previous */}
-              {project.prevProject ? (
-                <Link
-                  href={`/works/${project.prevProject.slug}`}
-                  className="group flex items-start gap-2 text-left max-w-[45%] hover:text-[#09f] transition-colors"
-                >
-                  <span className="mt-0.5 shrink-0 text-lg">&larr;</span>
-                  <span className="text-sm font-semibold uppercase tracking-wide leading-snug">
-                    {project.prevProject.title}
-                  </span>
-                </Link>
-              ) : (
-                <div />
-              )}
-
-              {/* Next */}
-              {project.nextProject ? (
-                <Link
-                  href={`/works/${project.nextProject.slug}`}
-                  className="group flex items-start gap-2 text-right max-w-[45%] ml-auto hover:text-[#09f] transition-colors"
-                >
-                  <span className="text-sm font-semibold uppercase tracking-wide leading-snug">
-                    {project.nextProject.title}
-                  </span>
-                  <span className="mt-0.5 shrink-0 text-lg">&rarr;</span>
-                </Link>
-              ) : (
-                <div />
-              )}
-            </div>
-          </div>
-        </section>
-      )}
+      <ProjectNav
+        prevProject={project.prevProject}
+        nextProject={project.nextProject}
+      />
 
       {/* ------------------------------------------------- */}
       {/*  5. Contact CTA                                    */}

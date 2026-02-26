@@ -1,17 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
 import { siteConfig } from "@/data/site";
-import { projects } from "@/data/projects";
+import { projects, comingSoonProjects } from "@/data/projects";
 import { FadeIn } from "@/components/FadeIn";
+import { AboutPortrait } from "@/components/AboutPortrait";
+import { ProjectCard } from "@/components/ProjectCard";
+import { HeroTitle } from "@/components/HeroTitle";
 
 export default function Home() {
   return (
     <>
-      {/* ─── Hero Section ─── */}
-      <section className="relative flex min-h-screen flex-col items-center justify-center bg-[#050505] px-5 md:px-10">
+      {/* ─── Hero Section (stays fixed, content scrolls over it) ─── */}
+      <section className="sticky top-0 z-0 flex min-h-screen flex-col items-center justify-center bg-[#050505] px-5 md:px-10">
         <div className="flex flex-col items-center text-center">
           <h1 className="text-[56px] leading-[0.95] font-[900] tracking-[-0.06em] text-white md:text-[100px] lg:text-[140px]">
-            {siteConfig.hero.heading}
+            <HeroTitle text={siteConfig.hero.heading} />
           </h1>
           <p className="mt-4 text-sm font-medium tracking-[0.2em] text-white/60 uppercase md:mt-6 md:text-base">
             {siteConfig.hero.subheading}
@@ -19,35 +22,66 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ─── Content (slides up over hero) ─── */}
+      <div className="relative z-10">
+
       {/* ─── Works Section ─── */}
-      <section id="works" className="bg-white">
+      <section id="works" className="bg-white shadow-[0_-20px_60px_rgba(0,0,0,0.15)]">
         <div className="mx-auto max-w-[1440px] px-5 pt-[100px] pb-[60px] md:px-10 md:pt-[160px] md:pb-[80px]">
           <FadeIn>
             <h2 className="mb-12 text-3xl font-bold tracking-tight md:mb-16 md:text-4xl">
-              Works
+              WORK
             </h2>
           </FadeIn>
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-10 lg:gap-12">
             {projects.map((project, index) => (
               <FadeIn key={project.slug} delay={index % 2 === 0 ? 0 : 120}>
-                <Link
-                  href={`/works/${project.slug}`}
-                  className="project-card group block"
-                >
+                <ProjectCard
+                  slug={project.slug}
+                  title={project.title}
+                  thumbnail={project.thumbnail}
+                />
+              </FadeIn>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Coming Soon Section ─── */}
+      <section className="bg-white">
+        <div className="mx-auto max-w-[1440px] px-5 pt-[60px] pb-[80px] md:px-10 md:pt-[80px] md:pb-[100px]">
+          <FadeIn>
+            <h2 className="mb-12 text-3xl font-bold tracking-tight md:mb-16 md:text-4xl">
+              COMING SOON
+            </h2>
+          </FadeIn>
+
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-10 lg:gap-12">
+            {comingSoonProjects.map((project, index) => (
+              <FadeIn key={project.slug} delay={index % 2 === 0 ? 0 : 120}>
+                <div className="group">
                   <div className="relative aspect-[4/3] overflow-hidden rounded-sm bg-gray-100">
                     <Image
                       src={project.thumbnail}
                       alt={project.title}
                       fill
                       sizes="(max-width: 768px) 100vw, 50vw"
-                      className="project-card-image object-cover"
+                      className="object-cover"
                     />
                   </div>
-                  <h3 className="mt-4 text-base font-semibold tracking-tight md:mt-5 md:text-lg">
-                    {project.title}
-                  </h3>
-                </Link>
+                  <div className="mt-4 flex items-center gap-3 md:mt-5">
+                    <h3 className="text-base font-semibold tracking-tight md:text-lg">
+                      {project.title}
+                    </h3>
+                    <span className="rounded-full bg-gray-100 px-3 py-0.5 text-xs font-medium tracking-wide text-gray-500 uppercase">
+                      {project.year}
+                    </span>
+                  </div>
+                  {project.company && (
+                    <p className="mt-1 text-sm text-gray-400">{project.company}</p>
+                  )}
+                </div>
               </FadeIn>
             ))}
           </div>
@@ -63,18 +97,26 @@ export default function Home() {
             </h2>
           </FadeIn>
 
-          <div className="max-w-3xl">
-            <FadeIn delay={80}>
-              <p className="text-lg leading-relaxed text-gray-800 md:text-xl md:leading-[1.75]">
-                {siteConfig.about.description}
-              </p>
+          <div className="flex flex-col gap-10 md:flex-row md:items-start md:gap-16 lg:gap-20">
+            {/* Portrait — top on mobile, right on desktop */}
+            <FadeIn className="order-first md:order-last md:w-[380px] md:shrink-0 lg:w-[440px]">
+              <AboutPortrait />
             </FadeIn>
 
-            <FadeIn delay={160}>
-              <p className="mt-6 text-base leading-relaxed text-gray-500 md:mt-8 md:text-lg md:leading-[1.75]">
-                {siteConfig.about.secondary}
-              </p>
-            </FadeIn>
+            {/* Text */}
+            <div className="min-w-0 flex-1">
+              <FadeIn delay={80}>
+                <p className="text-lg leading-relaxed text-gray-800 md:text-xl md:leading-[1.75]">
+                  {siteConfig.about.description}
+                </p>
+              </FadeIn>
+
+              <FadeIn delay={160}>
+                <p className="mt-6 text-base leading-relaxed text-gray-500 md:mt-8 md:text-lg md:leading-[1.75]">
+                  {siteConfig.about.secondary}
+                </p>
+              </FadeIn>
+            </div>
           </div>
         </div>
       </section>
@@ -91,7 +133,7 @@ export default function Home() {
           <div className="max-w-3xl divide-y divide-gray-200">
             {siteConfig.services.items.map((service, index) => (
               <FadeIn key={service.name} delay={index * 100}>
-                <div className="py-8 first:pt-0 last:pb-0 md:py-10">
+                <div className="py-10 md:py-14">
                   <h3 className="text-sm font-bold tracking-[0.12em] uppercase md:text-base">
                     {service.name}
                   </h3>
@@ -136,27 +178,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ─── Contact Section ─── */}
-      <section id="contact" className="bg-[#050505]">
-        <div className="mx-auto max-w-[1440px] px-5 py-[100px] md:px-10 md:py-[140px]">
-          <FadeIn>
-            <div className="flex flex-col items-center text-center">
-              <p className="text-xl font-medium text-white/70 md:text-2xl">
-                {siteConfig.contact.cta}
-              </p>
-              <a
-                href={`mailto:${siteConfig.email}`}
-                className="mt-4 text-3xl font-bold text-[#09f] transition-opacity hover:opacity-80 md:mt-6 md:text-5xl"
-              >
-                {siteConfig.contact.ctaLink}
-              </a>
-              <p className="mt-8 text-xs font-medium tracking-[0.15em] text-white/40 md:mt-10 md:text-sm">
-                {siteConfig.email.toUpperCase()}
-              </p>
-            </div>
-          </FadeIn>
-        </div>
-      </section>
+      </div>{/* end content wrapper */}
     </>
   );
 }

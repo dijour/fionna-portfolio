@@ -105,7 +105,7 @@ export const projects: Project[] = [
     ],
     description: "Chanel launched a new ad for their male perfume line called Bleu de Chanel, featuring Timothée Chalamet as their new global ambassador.",
     heroImage: "/images/chanel/hero.jpg",
-    thumbnail: "/images/home/chanel.jpg",
+    thumbnail: "/images/chanel/hero.jpg",
     images: [
       "/images/chanel/img1.png",
       "/images/chanel/img2.png",
@@ -129,7 +129,7 @@ export const projects: Project[] = [
       { role: "Costumes Assistant", name: "Fionna Lui" },
     ],
     heroImage: "/images/lifelist/hero.jpg",
-    thumbnail: "/images/home/lifelist.jpg",
+    thumbnail: "/images/lifelist/hero.jpg",
     images: [
       "/images/lifelist/img1.jpg",
       "/images/lifelist/img2.jpg",
@@ -155,7 +155,7 @@ export const projects: Project[] = [
       { role: "Costume Designer", name: "Fionna Lui" },
     ],
     heroImage: "/images/bodega/hero.jpg",
-    thumbnail: "/images/home/bodega.jpg",
+    thumbnail: "/images/bodega/hero.jpg",
     images: [
       "/images/bodega/img1.png",
       "/images/bodega/img2.png",
@@ -169,6 +169,24 @@ export const projects: Project[] = [
     ],
     liveProjectUrl: "https://www.youtube.com/watch?v=Q5gdbfz888E",
     prevProject: { slug: "thelifelist", title: "The Life List" },
+  },
+];
+
+export interface ComingSoonProject {
+  slug: string;
+  title: string;
+  company: string;
+  year: string;
+  thumbnail: string;
+}
+
+export const comingSoonProjects: ComingSoonProject[] = [
+  {
+    slug: "devilwearsprada2",
+    title: "The Devil Wears Prada 2",
+    company: "Disney",
+    year: "2025",
+    thumbnail: "/images/devilwearsprada2/hero.jpg",
   },
 ];
 

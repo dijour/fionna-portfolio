@@ -3,6 +3,9 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { SmoothScroll } from "@/components/SmoothScroll";
+import { TransitionProvider } from "@/components/TransitionContext";
+import { TransitionOverlay } from "@/components/TransitionOverlay";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -31,9 +34,13 @@ export default function RootLayout({
   return (
     <html lang="en" className={inter.variable}>
       <body className="font-[var(--font-inter)] antialiased">
-        <Navbar />
-        <main>{children}</main>
-        <Footer />
+        <TransitionProvider>
+          <SmoothScroll />
+          <TransitionOverlay />
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+        </TransitionProvider>
       </body>
     </html>
   );

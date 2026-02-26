@@ -22,13 +22,17 @@ export const siteConfig = {
     subheading: "BROOKLYN-BASED creative",
   },
   about: {
-    title: "About",
+    title: "ABOUT",
     description: "Multidisciplinary creative working across production, creative direction, and styling. Partnering with cool, forward-thinking brands to bring energy, clarity, and visual impact to shoots, events, and brand moments\u2014translating ideas into elevated, living visuals.",
     secondary: "I strive to capture the essence of each client\u2019s unique identity, translating their vision into compelling visual narratives that resonate with their audience.",
   },
   services: {
-    title: "My services",
+    title: "SERVICES",
     items: [
+      {
+        name: "Creative Direction",
+        description: "Shaping concepts, narratives, and moods for cohesive, brand-driven work.",
+      },
       {
         name: "Styling & Visual Composition",
         description: "Crafting looks and visual details across fashion, beauty, lifestyle, and experiential projects.",
@@ -37,14 +41,10 @@ export const siteConfig = {
         name: "Production & On-Set Support",
         description: "Structure and creative problem-solving for shoots, events, and productions from preparation through execution.",
       },
-      {
-        name: "Creative Direction",
-        description: "Shaping concepts, narratives, and moods for cohesive, brand-driven work.",
-      },
     ],
   },
   experience: {
-    title: "Experience",
+    title: "EXPERIENCE",
     items: [
       { role: "Costumes Coordinator", type: "Freelance", period: "2024-Present" },
       { role: "Key Costumer", type: "Freelance", period: "2023-Present" },

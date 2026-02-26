@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { TransitionLink } from "./TransitionLink";
 import { siteConfig } from "@/data/site";
 
 export function Footer() {
@@ -13,13 +13,13 @@ export function Footer() {
             </h4>
             <div className="flex flex-col gap-3">
               {siteConfig.footerNav.map((item) => (
-                <Link
+                <TransitionLink
                   key={item.label}
                   href={item.href}
                   className="text-sm hover:text-[#09f] transition-colors"
                 >
                   {item.label}
-                </Link>
+                </TransitionLink>
               ))}
             </div>
           </div>
