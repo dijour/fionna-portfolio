@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const dynamic = "force-static";
 
-export const alt = "Fionna Lui - Portfolio";
+export const alt = "Fionna Lui - Creative Strategist";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -15,61 +15,82 @@ export default async function Image() {
           height: "100%",
           display: "flex",
           flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          backgroundColor: "#050505",
+          justifyContent: "space-between",
+          backgroundColor: "#f5f5f3",
           fontFamily: "Inter, sans-serif",
+          padding: "48px 56px",
+          overflow: "hidden",
+          position: "relative",
         }}
       >
-        {/* FL Logo */}
+        {/* Top row */}
         <div
           style={{
-            fontSize: 180,
-            fontWeight: 900,
-            color: "white",
-            letterSpacing: "-0.02em",
-            lineHeight: 1,
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "flex-start",
+            width: "100%",
           }}
         >
-          FL
+          {/* Top-left: Logo */}
+          <div
+            style={{
+              fontSize: 28,
+              fontWeight: 900,
+              color: "#050505",
+              letterSpacing: "-0.01em",
+            }}
+          >
+            FL™
+          </div>
+
+          {/* Top-right: Descriptor */}
+          <div
+            style={{
+              fontSize: 28,
+              fontWeight: 700,
+              color: "#050505",
+            }}
+          >
+            Creative Strategist
+          </div>
         </div>
 
-        {/* Divider line */}
+        {/* Bottom: Large cropped name */}
         <div
           style={{
-            width: 60,
-            height: 2,
-            backgroundColor: "rgba(255,255,255,0.2)",
-            marginTop: 40,
-            marginBottom: 40,
-          }}
-        />
-
-        {/* Name */}
-        <div
-          style={{
-            fontSize: 28,
-            fontWeight: 700,
-            color: "white",
-            letterSpacing: "0.2em",
-            textTransform: "uppercase" as const,
+            display: "flex",
+            flexDirection: "column",
+            position: "absolute",
+            bottom: -30,
+            left: 56,
+            right: 56,
           }}
         >
-          Fionna Lui
-        </div>
-
-        {/* Subtitle */}
-        <div
-          style={{
-            fontSize: 16,
-            fontWeight: 500,
-            color: "rgba(255,255,255,0.5)",
-            letterSpacing: "0.15em",
-            textTransform: "uppercase" as const,
-            marginTop: 12,
-          }}
-        >
-          Costume Designer &amp; Stylist
+          <div
+            style={{
+              fontSize: 186,
+              fontWeight: 900,
+              color: "#050505",
+              letterSpacing: "-0.05em",
+              lineHeight: 0.85,
+              whiteSpace: "nowrap",
+            }}
+          >
+            FIONNA
+          </div>
+          <div
+            style={{
+              fontSize: 186,
+              fontWeight: 900,
+              color: "#050505",
+              letterSpacing: "-0.05em",
+              lineHeight: 0.85,
+              whiteSpace: "nowrap",
+            }}
+          >
+            LUI
+          </div>
         </div>
       </div>
     ),
