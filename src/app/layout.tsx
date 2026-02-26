@@ -24,6 +24,12 @@ export const metadata: Metadata = {
       "Multidisciplinary creative working across production, creative direction, and styling.",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "FIONNA LUI - PORTFOLIO",
+    description:
+      "Multidisciplinary creative working across production, creative direction, and styling.",
+  },
 };
 
 export default function RootLayout({
