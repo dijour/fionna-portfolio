@@ -7,6 +7,18 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default async function Image() {
+  const interBold = await fetch(
+    new URL(
+      "https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuFuYMZg.ttf"
+    )
+  ).then((res) => res.arrayBuffer());
+
+  const interBlack = await fetch(
+    new URL(
+      "https://fonts.gstatic.com/s/inter/v20/UcCO3FwrK3iLTeHuS_nVMrMxCp50SjIw2boKoduKmMEVuBWYMZg.ttf"
+    )
+  ).then((res) => res.arrayBuffer());
+
   return new ImageResponse(
     (
       <div
@@ -17,7 +29,7 @@ export default async function Image() {
           flexDirection: "column",
           justifyContent: "space-between",
           backgroundColor: "#f5f5f3",
-          fontFamily: "Inter, sans-serif",
+          fontFamily: "Inter",
           padding: "48px 56px",
           overflow: "hidden",
           position: "relative",
@@ -35,7 +47,7 @@ export default async function Image() {
           {/* Top-left: Logo */}
           <div
             style={{
-              fontSize: 28,
+              fontSize: 30,
               fontWeight: 900,
               color: "#050505",
               letterSpacing: "-0.01em",
@@ -47,7 +59,7 @@ export default async function Image() {
           {/* Top-right: Descriptor */}
           <div
             style={{
-              fontSize: 28,
+              fontSize: 30,
               fontWeight: 700,
               color: "#050505",
             }}
@@ -56,46 +68,47 @@ export default async function Image() {
           </div>
         </div>
 
-        {/* Bottom: Large cropped name */}
+        {/* Bottom: Large name spanning full width */}
         <div
           style={{
             display: "flex",
-            flexDirection: "column",
             position: "absolute",
-            bottom: -30,
+            bottom: 48,
             left: 56,
             right: 56,
           }}
         >
           <div
             style={{
-              fontSize: 186,
+              fontSize: 206,
               fontWeight: 900,
               color: "#050505",
               letterSpacing: "-0.05em",
-              lineHeight: 0.85,
+              lineHeight: 1,
               whiteSpace: "nowrap",
             }}
           >
-            FIONNA
-          </div>
-          <div
-            style={{
-              fontSize: 186,
-              fontWeight: 900,
-              color: "#050505",
-              letterSpacing: "-0.05em",
-              lineHeight: 0.85,
-              whiteSpace: "nowrap",
-            }}
-          >
-            LUI
+            FIONNA LUI
           </div>
         </div>
       </div>
     ),
     {
       ...size,
+      fonts: [
+        {
+          name: "Inter",
+          data: interBold,
+          weight: 700,
+          style: "normal",
+        },
+        {
+          name: "Inter",
+          data: interBlack,
+          weight: 900,
+          style: "normal",
+        },
+      ],
     }
   );
 }
